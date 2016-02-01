@@ -50,5 +50,4 @@ angular.module('nodeTodo', [])
     //             console.log('Error: ' + error);
     //         });
     // };
-
 });
