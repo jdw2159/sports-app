@@ -8,14 +8,15 @@ client.connect();
 
 function createTables() {
 	console.log('creating teams table')
-	var query = client.query('CREATE TABLE teams(tid SERIAL PRIMARY KEY, \
-		name VARCHAR(20) not null, city VARCHAR(20) not null, state VARCHAR(2) \
-		not null, lat real, long real, abbr VARCHAR(4))');
+	// makes sure that teams gets created first
+	var query = client.query('CREATE TABLE IF NOT EXISTS teams(tid SERIAL PRIMARY KEY, \
+		name text not null, abbr text not null, espn_token text not null, \
+		city text, state text, lat real, long real)');
 	query.on('end', function(result) {
 		// console.log(result.rowCount + ' rows were received');
 		// console.log(JSON.stringify(result.rows, null, "    "));
 		console.log('creating games table')
-		query = client.query('CREATE TABLE games(gid SERIAL, tid_h smallint \
+		query = client.query('CREATE TABLE IF NOT EXISTS games(gid SERIAL, tid_h smallint \
 			REFERENCES teams(tid) not null, tid_a smallint REFERENCES teams(tid) \
 			not null, date date not null, UNIQUE (tid_h, tid_a, date))')
 		query.on('end', function(result) {
