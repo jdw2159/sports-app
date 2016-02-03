@@ -11,7 +11,7 @@ function createTables() {
 	// makes sure that teams gets created first
 	var query = client.query('CREATE TABLE IF NOT EXISTS teams(tid SERIAL PRIMARY KEY, \
 		name text not null UNIQUE, abbr text not null, espn_token text not null, \
-		city text, state text, lat real, long real)');
+		city text, state text, lat real, lng real)');
 	query.on('end', function(result) {
 		// console.log(result.rowCount + ' rows were received');
 		// console.log(JSON.stringify(result.rows, null, "    "));
