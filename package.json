@@ -15,7 +15,7 @@
     "pg": "^4.4.4",
     "serve-favicon": "~2.3.0"
   },
-  "engines":{
+  "engines": {
     "node": "0.12.7"
-  },
+  }
 }
