@@ -1,6 +1,6 @@
 var path = require('path');
 var request = require('request');
-var Promise = require('promise')
+var Promise = require('promise');
 
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../', '../', 'config'));
@@ -46,6 +46,8 @@ function(err, response, body) {
 			var team_token = game.url.substring(game.url.lastIndexOf('/') + 1)
 			var opp_token = game.opponent.href.substring(game.opponent.href.lastIndexOf('/') + 1)
 
+			var num = 0;
+
 			if (game.location === "vs") {
 				home = team_abbr;
 				away = opp_abbr;
@@ -67,9 +69,19 @@ function(err, response, body) {
 			if (!away_tid) {
 				away_tid = dict2[away_token];
 			}
-
-			console.log('home: ' + home_tid + '/' + home + ' vs away: ' + away_tid + '/' + away);
-			// var query = client.query('INSERT INTO games ')
+			
+			var query = client.query('INSERT INTO games VALUES (DEFAULT, $1, $2, $3)', 
+				[home_tid, away_tid, game.date]);
+			query.on('error', function(error) {
+				// do nothing
+			})
+			query.on('end', function() {
+				num++;
+				console.log('inserted game # ' + num);
+				if (num === 1230) {
+					client.end();
+				}
+			})
 		}
 	};
 });

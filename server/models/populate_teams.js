@@ -14,6 +14,8 @@ function(err, response, body) {
 	var count = myJson.count;
 	var all_teams = myJson.results.collection1;
 
+	var num = 0;
+
 	for (i = 0; i < count; i++) {
 		var team_info = all_teams[i];
 		var url_arr = team_info.teams.href.split('/');
@@ -25,7 +27,9 @@ function(err, response, body) {
 		var query = client.query('INSERT INTO teams (tid, name, abbr, espn_token) \
 			VALUES (DEFAULT, $1, $2, $3)', [team_name, espn_abbr, espn_token]);
 		query.on('end', function(result) {
-			if (i === count - 1) {
+			num++;
+			console.log('inserted team # ' + num);
+			if (num === 30) {
 				client.end();
 			}
 		});
