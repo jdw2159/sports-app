@@ -78,8 +78,12 @@ function(err, response, body) {
 			query.on('end', function() {
 				num++;
 				console.log('inserted game # ' + num);
-				if (num === 1230) {
-					client.end();
+				if (num === 1231) {
+					// celtics had a duplicate game that was postponed
+					var query = client.query('DELETE FROM games WHERE tid_a = 1 AND date = \'Jan 23\'');
+					query.on('end', function() {
+						client.end();
+					});
 				}
 			})
 		}
