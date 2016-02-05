@@ -1,6 +1,6 @@
 var path = require('path');
 var request = require('request');
-var Promise = require('promise');
+// var Promise = require('promise');
 
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../', '../', 'config'));
@@ -8,7 +8,7 @@ var client = new pg.Client(connectionString);
 
 client.connect();
 
-request("https://www.kimonolabs.com/api/cz62oi1w?apikey=RzlH1CszbtL3YsvWJ0BTKcmIhEzkCHLa", 
+request("https://www.kimonolabs.com/api/cz62oi1w?apikey=RzlH1CszbtL3YsvWJ0BTKcmIhEzkCHLa",
 function(err, response, body) {
 
 	var myJson = JSON.parse(body);
@@ -69,8 +69,8 @@ function(err, response, body) {
 			if (!away_tid) {
 				away_tid = dict2[away_token];
 			}
-			
-			var query = client.query('INSERT INTO games VALUES (DEFAULT, $1, $2, $3)', 
+
+			var query = client.query('INSERT INTO games VALUES (DEFAULT, $1, $2, $3)',
 				[home_tid, away_tid, game.date]);
 			query.on('error', function(error) {
 				// do nothing

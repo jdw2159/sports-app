@@ -1,5 +1,5 @@
 var path = require('path');
-var Promise = require('promise');
+// var Promise = require('promise');
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../', '../', 'config'));
 
