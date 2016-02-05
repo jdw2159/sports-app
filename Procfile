@@ -1,1 +1,1 @@
-web: node index.js
+web: supervisor ./bin/www
