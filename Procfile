@@ -1,1 +1,1 @@
-web: supervisor ./bin/www
+web: npm start
