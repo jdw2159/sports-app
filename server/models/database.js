@@ -1,8 +1,7 @@
 var path = require('path');
-// var Promise = require('promise');
+var fs = require('fs');
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../', '../', 'config'));
-
 var client = new pg.Client(connectionString);
 client.connect();
 

@@ -1,17 +1,16 @@
 var path = require('path');
-var request = require('request');
-// var Promise = require('promise');
-
+// var request = require('request');
+var fs = require('fs');
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../', '../', 'config'));
 var client = new pg.Client(connectionString);
-
 client.connect();
 
-request("https://www.kimonolabs.com/api/cz62oi1w?apikey=RzlH1CszbtL3YsvWJ0BTKcmIhEzkCHLa",
-function(err, response, body) {
-
-	var myJson = JSON.parse(body);
+// request("https://www.kimonolabs.com/api/cz62oi1w?apikey=RzlH1CszbtL3YsvWJ0BTKcmIhEzkCHLa",
+// function(err, response, body) {
+function populate() {
+	// var myJson = JSON.parse(body);
+	var myJson = JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'json/', 'nba_schedule.json'), 'utf8'));
 	var count = myJson.count;
 	var games = myJson.results.nba_schedule;
 
@@ -88,4 +87,6 @@ function(err, response, body) {
 			})
 		}
 	};
-});
+};
+
+populate();

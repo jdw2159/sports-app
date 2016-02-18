@@ -1,16 +1,18 @@
 var path = require('path');
-var request = require('request');
-
+// var request = require('request');
+var fs = require('fs');
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../', '../', 'config'));
 var client = new pg.Client(connectionString);
-
 client.connect();
 
-request("https://www.kimonolabs.com/api/ej4gcxkw?apikey=RzlH1CszbtL3YsvWJ0BTKcmIhEzkCHLa", 
-function(err, response, body) {
+// request("https://www.kimonolabs.com/api/ej4gcxkw?apikey=RzlH1CszbtL3YsvWJ0BTKcmIhEzkCHLa", 
+// function(err, response, body) {
 
-	var myJson = JSON.parse(body);
+function populate() {
+
+	// var myJson = JSON.parse(body);
+	var myJson = JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'json/', 'nba_team_info.json'), 'utf8'));
 	var count = myJson.count;
 	var all_teams = myJson.results.team_info;
 
@@ -27,17 +29,6 @@ function(err, response, body) {
 
 		// var arena = team_info.state.text;
 
-		// var query = client.query('SELECT tid FROM teams WHERE name = $1', [name]);
-		// query.on('error', function(error) {
-		// 	console.log('got an error');
-		// })
-		// query.on('row', function(row) {
-		// 	console.log('team found with tid: ' + row['tid']);
-		// })
-		// query.on('end', function() {
-		// 	// do nothing
-		// });
-
 		var query = client.query('UPDATE teams SET city = $1, state = $2, lat = $3, \
 			lng = $4 WHERE name = $5', [city, state, lat, lng, name]);
 		query.on('error', function(error) {
@@ -51,5 +42,6 @@ function(err, response, body) {
 			}
 		})
 	}
-});
+};
 
+populate();

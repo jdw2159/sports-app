@@ -1,16 +1,16 @@
 var path = require('path');
-var request = require('request');
-
+// var request = require('request');
+var fs = require('fs');
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../', '../', 'config'));
 var client = new pg.Client(connectionString);
-
 client.connect();
 
-request("https://www.kimonolabs.com/api/3kneoqdm?apikey=RzlH1CszbtL3YsvWJ0BTKcmIhEzkCHLa", 
-function(err, response, body) {
-
-	var myJson = JSON.parse(body);
+// request("https://www.kimonolabs.com/api/3kneoqdm?apikey=RzlH1CszbtL3YsvWJ0BTKcmIhEzkCHLa", 
+// function(err, response, body) {
+function populate() {
+	// var myJson = JSON.parse(body);
+	var myJson = JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'json/', 'nba_teams.json'), 'utf8'));
 	var count = myJson.count;
 	var all_teams = myJson.results.collection1;
 
@@ -34,4 +34,6 @@ function(err, response, body) {
 			}
 		});
 	}
-});
+};
+
+populate();
