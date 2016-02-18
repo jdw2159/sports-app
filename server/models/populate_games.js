@@ -69,8 +69,19 @@ function populate() {
 				away_tid = dict2[away_token];
 			}
 
+			var game_date = game.date.split(' ');
+			var db_format_date = '' + game_date[0] + '-' + game_date[1];
+			if (game_date[0] == 'Oct' || game_date[0] == 'Nov' || game_date[0] == 'Dec' ) {
+				db_format_date += '-15'
+			}
+			else {
+				db_format_date += '-16'
+			}
+			console.log(db_format_date);
+
+
 			var query = client.query('INSERT INTO games VALUES (DEFAULT, $1, $2, $3)',
-				[home_tid, away_tid, game.date]);
+				[home_tid, away_tid, db_format_date]);
 			query.on('error', function(error) {
 				// do nothing
 			})
@@ -79,7 +90,7 @@ function populate() {
 				console.log('inserted game # ' + num);
 				if (num === 1231) {
 					// celtics had a duplicate game that was postponed
-					var query = client.query('DELETE FROM games WHERE tid_a = 1 AND date = \'Jan 23\'');
+					var query = client.query('DELETE FROM games WHERE tid_a = 1 AND date = \'Jan-23-16\'');
 					query.on('end', function() {
 						client.end();
 					});
