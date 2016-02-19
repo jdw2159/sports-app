@@ -77,8 +77,6 @@ function populate() {
 			else {
 				db_format_date += '-16'
 			}
-			console.log(db_format_date);
-
 
 			var query = client.query('INSERT INTO games VALUES (DEFAULT, $1, $2, $3)',
 				[home_tid, away_tid, db_format_date]);

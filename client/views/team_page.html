@@ -2,14 +2,15 @@
 <html ng-app="sportsApp">
   <head>
     <script src="/angular/angular.js"></script>
+    <script src="/angular-route/angular-route.js"></script>
     <script src="/javascripts/app.js"></script>
   </head>
   <body>
-    <h2>Teams</h2>
-    <div ng-controller="mainCtrl">
+    <h2>Games</h2>
+    <div ng-controller="teamCtrl">
       <ul>
-        <li ng-repeat="team in teams">
-          <a href="/team/{{team.tid}}">{{team.name}}</a>
+        <li ng-repeat="game in games">
+          <a href="#">{{game}}</a>
         </li>
       </ul>
     </div>
