@@ -1,4 +1,4 @@
-var app = angular.module('sportsApp', [])
+var app = angular.module('sportsApp', ['ui.bootstrap'])
 
 app.controller('mainCtrl', function($scope, $http) {
 
