@@ -10,7 +10,7 @@
     <div ng-controller="teamCtrl">
       <ul>
         <li ng-repeat="game in games">
-          <a href="#">{{game}}</a>
+          <a>{{game.h_name}} vs. {{game.a_name}} @ {{game.date}}</a>
         </li>
       </ul>
     </div>

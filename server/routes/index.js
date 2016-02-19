@@ -46,7 +46,8 @@ router.get('/team/:tid', function(req, res, next) {
 router.get('/team/:tid/all_games', function(req, res, next) {
 	var tid = req.params.tid;
 	var results = [];
-	var query = client.query('SELECT * FROM games WHERE tid_a = $1 OR tid_h = $1 ORDER BY date', [tid]);
+	var query = client.query('SELECT T1.name as h_name, T2.name as a_name, G.date FROM games G INNER JOIN teams T1 ON G.tid_h = T1.tid \
+		INNER JOIN teams T2 ON G.tid_a = T2.tid WHERE G.tid_h = $1 OR G.tid_a = $1 ORDER BY date', [tid]);
 	query.on('row', function(row) {
 		results.push(row);
 	});
