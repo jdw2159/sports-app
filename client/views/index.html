@@ -1,45 +1,21 @@
 <!doctype html>
 <html ng-app="sportsApp">
   <head>
+    <!-- angular -->
     <script src="/angular/angular.js"></script>
     <script src="/javascripts/app.js"></script>
-
+    <!-- ui-bootstrap -->
     <script src="/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <link rel="stylesheet" href="/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
-
+    <!-- regular bootstrap -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="/bootstrap/dist//css/bootstrap.css">
-
   </head>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li> 
-        <li><a href="#">Page 3</a></li> 
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
   <body>
+    <my-navbar></my-navbar>
     <h2>Teams</h2>
     <div ng-controller="mainCtrl">
       <ul>

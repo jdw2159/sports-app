@@ -20,3 +20,12 @@ app.controller('teamCtrl', function($scope, $http, $location) {
 		$scope.games = response.data;
 	});
 });
+
+app.directive('myNavbar', function() {
+	return {
+		restrict: "E",
+		replace: true,
+		transclude: true,
+		templateUrl: "/my_navbar.html"
+	};
+});
