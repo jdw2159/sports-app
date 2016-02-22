@@ -56,4 +56,16 @@ router.get('/team/:tid/all_games', function(req, res, next) {
 	});
 });
 
+router.get('/map', function(req, res, next) {
+	res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'map.html'), function(err) {
+		if (err) {
+			console.log(err);
+			res.status(err.status).end();
+		}
+		else {
+			console.log('map file sent');
+		}
+	});
+});
+
 module.exports = router;
