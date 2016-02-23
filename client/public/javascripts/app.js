@@ -22,7 +22,7 @@ app.controller('teamCtrl', function($scope, $http, $location) {
 });
 
 app.controller('mapCtrl', function($scope, $http) {
-	
+
 });
 
 app.directive('myNavbar', function() {
@@ -30,6 +30,6 @@ app.directive('myNavbar', function() {
 		restrict: "E",
 		replace: true,
 		transclude: true,
-		templateUrl: "/my_navbar.html"
+		templateUrl: "/navbar.html"
 	};
 });
